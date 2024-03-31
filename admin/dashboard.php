@@ -97,6 +97,17 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php
+            $select_category = $conn->prepare("SELECT * FROM `category`");
+            $select_category->execute();
+            $number_of_category = $select_category->rowCount()
+         ?>
+         <h3><?= $number_of_category; ?></h3>
+         <p>category added</p>
+         <a href="category.php" class="btn">see category</a>
+      </div>
+
+      <div class="box">
+         <?php
             $select_users = $conn->prepare("SELECT * FROM `users`");
             $select_users->execute();
             $number_of_users = $select_users->rowCount()
