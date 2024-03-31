@@ -4,24 +4,27 @@ include '../components/connect.php';
 
 session_start();
 
+
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
    header('location:admin_login.php');
 };
+
+// Fetch categories
 $select_categories = $conn->prepare("SELECT * FROM `category`");
 $select_categories->execute();
 $categories = $select_categories->fetchAll(PDO::FETCH_ASSOC);
 
-
-$select_sub_categories = $conn->prepare("SELECT * FROM `under_category`");
+// Fetch all sub-categories initially
+$select_sub_categories = $conn->prepare("SELECT * FROM `subcategory`");
 $select_sub_categories->execute();
 $sub_categories = $select_sub_categories->fetchAll(PDO::FETCH_ASSOC);
 
 
 if (isset($_POST['add_product'])) {
 
-   
+
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $price = $_POST['price'];
@@ -32,7 +35,7 @@ if (isset($_POST['add_product'])) {
    $quantity = intval($_POST['quantity']);
    $quantity = filter_var($quantity, FILTER_SANITIZE_STRING);
 
-   
+
    $cate = intval($_POST['category']);
    $cate = filter_var($cate, FILTER_SANITIZE_STRING);
 
@@ -65,7 +68,7 @@ if (isset($_POST['add_product'])) {
    } else {
 
       $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price,quantity, id_under_category ,image_01, image_02, image_03) VALUES(?,?,?,?,?,?,?,?)");
-      $insert_products->execute([$name, $details, $price, $quantity,$sub_cate,$image_01, $image_02, $image_03]);
+      $insert_products->execute([$name, $details, $price, $quantity, $sub_cate, $image_01, $image_02, $image_03]);
 
       if ($insert_products) {
          if ($image_size_01 > 2000000 or $image_size_02 > 2000000 or $image_size_03 > 2000000) {
@@ -146,31 +149,33 @@ if (isset($_GET['delete'])) {
                <span>image 03 (required)</span>
                <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
             </div>
-          
+
             <div class="inputBox">
                <span>quantity (required)</span>
-               <input type="number" min="1" class="box" required max="9999999999" placeholder="enter quantity"  name="quantity">
+               <input type="number" min="1" class="box" required max="9999999999" placeholder="enter quantity" name="quantity">
             </div>
 
             <div class="inputBox">
                <span>category (required)</span>
                <select name="category" id="category" class="box" required>
-                  <?php foreach ($categories as $category): ?>
-                     <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
-                  <?php endforeach; ?>
-               </select> 
-            </div>
-
-            <div class="inputBox">
-               <span>sub category (required)</span>
-               <select name="sub_category" id="category" class="box" required>
-                  <?php foreach ($sub_categories as $category): ?>
+                  <option value="" selected disabled>Select Category</option>
+                  <?php foreach ($categories as $category) : ?>
                      <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
                   <?php endforeach; ?>
                </select>
             </div>
 
-           
+            <div class="inputBox">
+               <span>sub category (required)</span>
+               <select name="sub_category" id="subCategorySelect" class="box" required>
+                  <option value="" selected disabled>Select Subcategory</option>
+                  <?php foreach ($sub_categories as $category) : ?>
+                     <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
+                  <?php endforeach; ?>
+               </select>
+            </div>
+
+
             <div class="inputBox">
                <span>product details (required)</span>
                <textarea name="details" placeholder="enter product details" class="box" required maxlength="500" cols="30" rows="10"></textarea>
@@ -212,20 +217,60 @@ if (isset($_GET['delete'])) {
             echo '<p class="empty">no products added yet!</p>';
          }
          ?>
-
       </div>
-
    </section>
+   <script>
+      document.addEventListener('DOMContentLoaded', function() {
+         var categorySelect = document.getElementById('category');
+         var subCategorySelect = document.getElementById('subCategorySelect');
 
+         categorySelect.addEventListener('change', function() {
+            var categoryId = this.value;
+            if (categoryId) {
+               var xhr = new XMLHttpRequest();
+               xhr.open('GET', 'get_subcategories.php?category_id=' + categoryId, true);
+               xhr.onreadystatechange = function() {
+                  if (xhr.readyState == 4 && xhr.status == 200) {
+                     var subCategories = JSON.parse(xhr.responseText);
+                     updateSubCategoryOptions(subCategories);
+                  }
+               };
+               xhr.send();
+            } else {
+               subCategorySelect.innerHTML = '';
+            }
+         });
 
+         function updateSubCategoryOptions(subCategories) {
+            subCategorySelect.innerHTML = '';
+            subCategories.forEach(function(subCategory) {
+               var option = document.createElement('option');
+               option.value = subCategory.id;
+               option.textContent = subCategory.name;
+               subCategorySelect.appendChild(option);
+            });
+         }
 
-
+         // Initial call to populate subcategories based on the default category
+         var defaultCategoryId = categorySelect.value;
+         if (defaultCategoryId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_subcategories.php?category_id=' + defaultCategoryId, true);
+            xhr.onreadystatechange = function() {
+               if (xhr.readyState == 4 && xhr.status == 200) {
+                  var subCategories = JSON.parse(xhr.responseText);
+                  updateSubCategoryOptions(subCategories);
+               }
+            };
+            xhr.send();
+         }
+      });
+   </script>
 
 
 
 
    <script src="../js/admin_script.js"></script>
-
 </body>
 
 </html>
