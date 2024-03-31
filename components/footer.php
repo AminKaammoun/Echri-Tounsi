@@ -22,7 +22,7 @@
          <h3>contact us</h3>
          <a href="tel:1234567890"><i class="fas fa-phone"></i> +216 12 345 678</a>
          <a href="tel:11122233333"><i class="fas fa-phone"></i> +216 87 654 321</a>
-         <a href="mailto:shaikh@gmail.com"><i class="fas fa-envelope"></i> EshriTounsi@gmail.com</a>
+         <a href="mailto:shaikh@gmail.com"><i class="fas fa-envelope"></i> EchriTounsi@gmail.com</a>
          <a href="https://www.google.com/myplace"><i class="fas fa-map-marker-alt"></i> sfax, Tunisia - 3021 </a>
       </div>
 
@@ -36,6 +36,8 @@
 
    </section>
 
-   <div class="credit">&copy; copyright @ <?= date('Y'); ?> by <span>Eshri Tounsi</span> | all rights reserved!</div>
+   <div class="credit">&copy; copyright @
+      <?= date('Y'); ?> by <span>Echri Tounsi</span> | all rights reserved!
+   </div>
 
 </footer>
