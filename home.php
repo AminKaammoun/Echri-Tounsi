@@ -10,6 +10,11 @@ if(isset($_SESSION['user_id'])){
    $user_id = '';
 };
 
+$select_categories = $conn->prepare("SELECT * FROM `category`");
+$select_categories->execute();
+$categories = $select_categories->fetchAll(PDO::FETCH_ASSOC);
+
+
 include 'components/wishlist_cart.php';
 
 ?>
@@ -41,48 +46,54 @@ include 'components/wishlist_cart.php';
 
    <div class="swiper home-slider">
    
-   <div class="swiper-wrapper">
+      <div class="swiper-wrapper">
 
-      <div class="swiper-slide slide">
-         <div class="image">
-            <img src="images/home-img-1.png" alt="">
+         <div class="swiper-slide slide">
+            <div class="image">
+               <img src="images/home-img-4.png" alt="">
+            </div>
+            <div class="content">
+               <span>upto 50% off</span>
+               <h3>latest key rings</h3>
+               <a href="shop.php" class="btn">shop now</a>
+            </div>
          </div>
-         <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest smartphones</h3>
-            <a href="shop.php" class="btn">shop now</a>
+
+         <div class="swiper-slide slide">
+            <div class="image">
+               <img src="images/home-img-5.png" alt="">
+            </div>
+            <div class="content">
+               <span>upto 50% off</span>
+               <h3>latest souvenirs</h3>
+               <a href="shop.php" class="btn">shop now</a>
+            </div>
          </div>
+
+         <div class="swiper-slide slide">
+            <div class="image">
+               <img src="images/home-img-6.png" alt="">
+            </div>
+            <div class="content">
+               <span>upto 50% off</span>
+               <h3>latest clothes</h3>
+               <a href="shop.php" class="btn">shop now</a>
+            </div>
+         </div>
+
       </div>
 
-      <div class="swiper-slide slide">
-         <div class="image">
-            <img src="images/home-img-2.png" alt="">
-         </div>
-         <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest watches</h3>
-            <a href="shop.php" class="btn">shop now</a>
-         </div>
-      </div>
+      <!-- Navigation arrows -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
 
-      <div class="swiper-slide slide">
-         <div class="image">
-            <img src="images/home-img-3.png" alt="">
-         </div>
-         <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest headsets</h3>
-            <a href="shop.php" class="btn">shop now</a>
-         </div>
-      </div>
-
-   </div>
-
+      <!-- Pagination -->
       <div class="swiper-pagination"></div>
 
    </div>
 
 </section>
+
 
 </div>
 
@@ -94,12 +105,14 @@ include 'components/wishlist_cart.php';
 
    <div class="swiper-wrapper">
 
-   <a href="category.php?category=laptop" class="swiper-slide slide">
-      <img src="images/icon-1.png" alt="">
-      <h3>laptop</h3>
-   </a>
+   <?php foreach ($categories as $category): ?>
+        <a href="category.php?category=<?= $category['name']; ?>" class="swiper-slide slide">
+            <img src="uploaded_img/<?= $category['image']; ?>" alt="">
+            <h3><?= $category['name']; ?></h3>
+        </a>
+    <?php endforeach; ?>
 
-   <a href="category.php?category=tv" class="swiper-slide slide">
+  <!-- <a href="category.php?category=tv" class="swiper-slide slide">
       <img src="images/icon-2.png" alt="">
       <h3>tv</h3>
    </a>
@@ -132,7 +145,7 @@ include 'components/wishlist_cart.php';
    <a href="category.php?category=watch" class="swiper-slide slide">
       <img src="images/icon-8.png" alt="">
       <h3>watch</h3>
-   </a>
+   </a>!-->
 
    </div>
 
@@ -202,22 +215,27 @@ include 'components/wishlist_cart.php';
 
 <script>
 
-var swiper = new Swiper(".home-slider", {
+var homeSlider = new Swiper(".home-slider", {
    loop:true,
    spaceBetween: 20,
    pagination: {
       el: ".swiper-pagination",
       clickable:true,
     },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
 });
 
- var swiper = new Swiper(".category-slider", {
+var categorySlider = new Swiper(".category-slider", {
    loop:true,
    spaceBetween: 20,
    pagination: {
       el: ".swiper-pagination",
       clickable:true,
    },
+
    breakpoints: {
       0: {
          slidesPerView: 2,
@@ -234,13 +252,14 @@ var swiper = new Swiper(".home-slider", {
    },
 });
 
-var swiper = new Swiper(".products-slider", {
+var productsSlider = new Swiper(".products-slider", {
    loop:true,
    spaceBetween: 20,
    pagination: {
       el: ".swiper-pagination",
       clickable:true,
    },
+  
    breakpoints: {
       550: {
         slidesPerView: 2,
@@ -255,6 +274,7 @@ var swiper = new Swiper(".products-slider", {
 });
 
 </script>
+
 
 </body>
 </html>

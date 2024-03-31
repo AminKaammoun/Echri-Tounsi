@@ -15,7 +15,10 @@
 
    <section class="flex">
 
-      <a href="home.php" class="logo">Shopie<span>.</span></a>
+   <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
+            src="images/logo_board.png" width="250px" />
+        
+      </a>
 
       <nav class="navbar">
          <a href="home.php">home</a>

@@ -232,11 +232,14 @@ section{
    display: none;
 }
 
-.home-bg{
-   background:url(../images/home-bg.png) no-repeat;
+.home-bg {
+   background: url(../images/testing.jpg) no-repeat;
    background-size: cover;
    background-position: center;
+   /* Add transparency */
+   background-color: rgba(255, 255, 255, 0.1); /* Adjust the last value (0.5) to change the transparency level */
 }
+
 
 .home-bg .home .slide{
    display: flex;
@@ -264,13 +267,13 @@ section{
 
 .home-bg .home .slide .content span{
    font-size: 2rem;
-   color:var(--white);
+   color:var(--black);
 }
 
 .home-bg .home .slide .content h3{
    margin-top: 1rem;
    font-size: 4rem;
-   color:var(--white);
+   color:var(--black);
    text-transform: uppercase;
 }
 
