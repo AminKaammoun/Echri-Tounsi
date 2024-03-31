@@ -1,14 +1,13 @@
 <?php
 
 include 'components/connect.php';
-
 session_start();
 
 if(isset($_SESSION['user_id'])){
    $user_id = $_SESSION['user_id'];
 }else{
    $user_id = '';
-};
+}
 
 include 'components/wishlist_cart.php';
 
@@ -27,26 +26,46 @@ include 'components/wishlist_cart.php';
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
    
 <?php include 'components/user_header.php'; ?>
 
 <section class="products">
-
    <h1 class="heading">category</h1>
-
    <div class="box-container">
 
    <?php
-     $category = $_GET['category'];
-     $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE '%{$category}%'"); 
-     $select_products->execute();
-     if($select_products->rowCount() > 0){
-      while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
-   ?>
-   <form action="" method="post" class="box">
+   if (isset($_GET['category'])) {
+       $categoryName = $_GET['category'];
+
+       // Fetch the category id based on the category name
+       $selected_category_id = $conn->prepare("SELECT * FROM `category` WHERE name = :categoryName");
+       $selected_category_id->bindParam(':categoryName', $categoryName);
+       $selected_category_id->execute();
+       $category = $selected_category_id->fetch(PDO::FETCH_ASSOC); // Use fetch instead of fetchAll
+
+       // Check if the category exists
+       if ($category) {
+           // Fetch subcategory ids associated with the category
+           $selected_sub_category_ids = $conn->prepare("SELECT * FROM `subcategory` WHERE category_id = :category_id");
+           $selected_sub_category_ids->bindParam(':category_id', $category['id']);
+           $selected_sub_category_ids->execute();
+           $sub_category_ids = $selected_sub_category_ids->fetchAll(PDO::FETCH_COLUMN);
+          
+           // Fetch products based on the subcategory ids
+           if (!empty($sub_category_ids)) {
+               $placeholders = implode(',', array_fill(0, count($sub_category_ids), '?'));
+               $sql = "SELECT * FROM `products` WHERE id_under_category IN ($placeholders)";
+               $selected_products = $conn->prepare($sql);
+               $selected_products->execute($sub_category_ids);
+               $fetch_products = $selected_products->fetchAll(PDO::FETCH_ASSOC);
+
+               if(count($fetch_products) > 0) {
+                   foreach($fetch_products as $fetch_product) {
+                       // Output product HTML
+                       ?>
+                       <form action="" method="post" class="box">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
       <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
@@ -61,28 +80,23 @@ include 'components/wishlist_cart.php';
       </div>
       <input type="submit" value="add to cart" class="btn" name="add_to_cart">
    </form>
-   <?php
-      }
-   }else{
-      echo '<p class="empty">no products found!</p>';
+                       <?php
+                   }
+               } else {
+                   echo '<p class="empty">No products found!</p>';
+               }
+           } else {
+               echo '<p class="empty">No subcategories found!</p>';
+           }
+       } else {
+           // Handle case when category does not exist
+           echo "Category not found";
+       }
    }
    ?>
 
    </div>
-
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
