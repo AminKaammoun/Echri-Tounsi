@@ -38,7 +38,6 @@ if (isset($_POST['add_category'])) {
             $message[] = 'image size is too large!';
          } else {
             move_uploaded_file($image_tmp_name_01, $image_folder_01);
-
             $message[] = 'new category added!';
          }
       }

@@ -105,6 +105,16 @@ if(!isset($admin_id)){
          <p>category added</p>
          <a href="category.php" class="btn">see category</a>
       </div>
+      <div class="box">
+         <?php
+            $select_category = $conn->prepare("SELECT * FROM `subcategory`");
+            $select_category->execute();
+            $number_of_category = $select_category->rowCount()
+         ?>
+         <h3><?= $number_of_category; ?></h3>
+         <p>subcategory added</p>
+         <a href="subcategory.php" class="btn">see Subcategories</a>
+      </div>
 
       <div class="box">
          <?php
