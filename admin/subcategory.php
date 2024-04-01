@@ -75,11 +75,7 @@ if (isset($_GET['delete'])) {
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="flex">
-                <div class="inputBox">
-                    <span>Subcategory name</span>
-                    <input type="text" class="box" required maxlength="100" placeholder="enter product name"
-                        name="name">
-                </div>
+                
 
                 <div class="inputBox">
                     <span>category (required)</span>
@@ -91,9 +87,14 @@ if (isset($_GET['delete'])) {
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div class="inputBox">
+                    <span>Subcategory name</span>
+                    <input type="text" class="box" required maxlength="100" placeholder="enter SubCategory name"
+                        name="name">
+                </div>
             </div>
 
-            <input type="submit" value="add product" class="btn" name="add_subcategory">
+            <input type="submit" value="add SubCategory" class="btn" name="add_subcategory">
         </form>
 
     </section>

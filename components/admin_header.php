@@ -14,9 +14,20 @@
 <header class="header">
 
    <section class="flex">
+       
+      
+   <?php
+   $current_page = basename($_SERVER['PHP_SELF']);
+   if ($current_page !== 'dashboard.php') {
+       echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
+                 <i class="fas fa-arrow-left"></i> Back
+             </a>';
+   }
+   ?>
+      <a href="../admin/dashboard.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
+            src="../images/logo_board.png" width="150px" />
 
-      <a href="../admin/dashboard.php" class="logo">Admin<span>Panel</span></a>
-
+      </a>
       <nav class="navbar">
          <a href="../admin/dashboard.php">home</a>
          <a href="../admin/products.php">products</a>
@@ -47,7 +58,32 @@
          </div>
          <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
       </div>
-
+      <div class="navbar">
+         <p><?= $fetch_profile['name']; ?></p>
+      </div>
+      
    </section>
+   <script>
+      function goBack() {
+        if (window.location.pathname !== 'http://localhost/Echri-Tounsi/home.php') {
+            history.back();
+        } else {
+            window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
+        }
+    }
+      window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+   var backButton = document.querySelector('.back-button');
+   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backButton.style.bottom = "10px"; // Adjust this value as needed
+   } else {
+      backButton.style.bottom = "20px"; // Adjust this value as needed
+   }
+}
+window.onload = function() {
+        scrollFunction();
+    };
+</script>
+   
 </header>

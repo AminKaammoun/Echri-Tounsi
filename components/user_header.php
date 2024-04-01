@@ -12,9 +12,16 @@ if (isset($message)) {
 ?>
 
 <header class="header">
-
+   <?php
+   $current_page = basename($_SERVER['PHP_SELF']);
+   if ($current_page !== 'home.php') {
+       echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
+                 <i class="fas fa-arrow-left"></i> Back
+             </a>';
+   }
+   ?>
    <section class="flex">
-
+   
       <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
             src="images/logo_board.png" width="250px" />
 
@@ -80,7 +87,33 @@ if (isset($message)) {
 
 
       </div>
+      <div>
+      <p>
+               <?= $fetch_profile["name"]; ?>
+            </p>
+      </div>
 
    </section>
+   <script>
+       function goBack() {
+        if (window.location.pathname !== 'http://localhost/Echri-Tounsi/home.php') {
+            history.back();
+        } else {
+            window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
+        }
+    }
+      window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+   var backButton = document.querySelector('.back-button');
+   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backButton.style.bottom = "10px"; // Adjust this value as needed
+   } else {
+      backButton.style.bottom = "20px"; // Adjust this value as needed
+   }
+}
+window.onload = function() {
+        scrollFunction();
+    };
+</script>
 </header>
