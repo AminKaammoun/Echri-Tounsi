@@ -130,7 +130,7 @@ if(isset($_POST['update'])){
             $categories = $select_categories->fetchAll(PDO::FETCH_ASSOC);
             
             
-            $select_sub_categories = $conn->prepare("SELECT * FROM `under_category`");
+            $select_sub_categories = $conn->prepare("SELECT * FROM `subcategory`");
             $select_sub_categories->execute();
             $sub_categories = $select_sub_categories->fetchAll(PDO::FETCH_ASSOC);
    

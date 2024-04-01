@@ -11,6 +11,22 @@
    --border:.2rem solid var(--black);
    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
 }
+.back-button {
+   position: fixed;
+   bottom: 150px; /* Adjust this value as needed */
+   left: 50px; /* Adjust this value as needed */
+   z-index: 9999;
+   background-color: #e2d6d6;
+   border: 1px solid #ccc;
+   padding: 10px 20px;
+   border-radius: 5px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease;
+}
+
+.back-button i {
+   margin-left: 5px;
+}
 
 *{
    font-family: 'Nunito', sans-serif;
