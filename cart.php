@@ -83,14 +83,14 @@ if (isset($_POST['update_qty'])) {
                   <div class="sub-total"> sub total :
                      <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span>
                   </div>
-                  <input type="submit" value="delete item" onclick="return confirm('delete this from cart?');"
+                  <input type="submit" value="delete item" onclick="return confirm('Delete this from cart?');"
                      class="delete-btn" name="delete">
                </form>
                <?php
                $grand_total += $sub_total;
             }
          } else {
-            echo '<p class="empty">your cart is empty</p>';
+            echo '<p class="empty">Your cart is empty</p>';
          }
          ?>
       </div>
