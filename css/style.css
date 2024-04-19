@@ -985,7 +985,7 @@ section {
   margin: 1.5rem 0;
   font-size: 1.7rem;
   color: var(--light-color);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .footer .grid .box a i {
