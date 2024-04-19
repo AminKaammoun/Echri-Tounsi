@@ -88,9 +88,11 @@ if (isset($message)) {
 
       </div>
       <div>
-      <p>
-               <?= $fetch_profile["name"]; ?>
+         <?php if(isset($fetch_profile["name"])){ ?>
+      <p style="font-size: 20px;">
+              Welcome back, <?= $fetch_profile["name"]; ?>
             </p>
+            <?php } ?>
       </div>
 
    </section>
