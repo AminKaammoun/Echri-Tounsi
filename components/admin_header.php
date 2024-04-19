@@ -19,11 +19,18 @@
    <?php
    $current_page = basename($_SERVER['PHP_SELF']);
    if ($current_page !== 'dashboard.php') {
-       echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
-                 <i class="fas fa-arrow-left"></i> Back
-             </a>';
-   }
+      echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>';
+  }
    ?>
+    <?php
+        if ($current_page !== 'dashboard.php') {
+            echo '<a href="javascript:void(0);" onclick="goForward();" class="forward-button navbar">
+                    <i class="fas fa-arrow-right"></i> Forward
+                  </a>';
+        }
+        ?>
       <a href="../admin/dashboard.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
             src="../images/logo_board.png" width="150px" />
 
@@ -72,6 +79,9 @@
         }
     }
       window.onscroll = function() {scrollFunction()};
+      function goForward() {
+            history.forward(); // Using the browser's forward function
+        }
 
 function scrollFunction() {
    var backButton = document.querySelector('.back-button');
@@ -79,6 +89,12 @@ function scrollFunction() {
       backButton.style.bottom = "10px"; // Adjust this value as needed
    } else {
       backButton.style.bottom = "20px"; // Adjust this value as needed
+   }
+   var forwardButton = document.querySelector('.forward-button');
+   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      forwardButton.style.bottom = "10px"; // Adjust this value as needed
+   } else {
+      forwardButton.style.bottom = "20px"; // Adjust this value as needed
    }
 }
 window.onload = function() {

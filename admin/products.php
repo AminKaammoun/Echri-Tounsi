@@ -267,16 +267,8 @@ if (isset($_GET['delete'])) {
             xhr.send();
          }
       });
-      window.onscroll = function() {scrollFunction()};
 
-      function scrollFunction() {
-         var backButton = document.querySelector('.back-button');
-         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backButton.style.bottom = "10px"; // Adjust this value as needed
-         } else {
-            backButton.style.bottom = "20px"; // Adjust this value as needed
-         }
-      }
+      
    </script>
 
 
