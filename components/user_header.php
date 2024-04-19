@@ -15,7 +15,7 @@ if (isset($message)) {
    <?php
    $current_page = basename($_SERVER['PHP_SELF']);
    if ($current_page !== 'home.php') {
-       echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
+      echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
                  <i class="fas fa-arrow-left"></i> Back
              </a>';
              echo '<a href="javascript:void(0);" onclick="goForward();" class="forward-button navbar">
@@ -26,7 +26,7 @@ if (isset($message)) {
    
    ?>
    <section class="flex">
-   
+
       <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
             src="images/logo_board.png" width="250px" />
 
@@ -93,17 +93,17 @@ if (isset($message)) {
 
       </div>
       <div>
-      <p>
-               <?= $fetch_profile["name"]; ?>
-            </p>
+         <p>
+            <?= $fetch_profile["name"]; ?>
+         </p>
       </div>
 
    </section>
    <script>
-       function goBack() {
-        if (window.location.pathname !== 'http://localhost/Echri-Tounsi/home.php') {
+      function goBack() {
+         if (window.location.pathname !== 'http://localhost/Echri-Tounsi/home.php') {
             history.back();
-        } else {
+         } else {
             window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
         }
     }

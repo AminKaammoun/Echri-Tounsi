@@ -6,6 +6,7 @@
   --red: #e74c3c;
   --black: #333;
   --white: #fff;
+  --green: #69d981;
   --light-color: #666;
   --light-bg: #eeeff5;
   --border: 0.2rem solid var(--white);
@@ -133,9 +134,9 @@ section {
 .message {
   position: sticky;
   top: 0;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
-  background-color: var(--light-bg);
+  background-color: var(--green);
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -999,7 +1000,7 @@ section {
   margin: 1.5rem 0;
   font-size: 1.7rem;
   color: var(--light-color);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .footer .grid .box a i {
