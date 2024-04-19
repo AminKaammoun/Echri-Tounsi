@@ -18,7 +18,12 @@ if (isset($message)) {
        echo '<a href="javascript:void(0);" onclick="goBack();" class="back-button navbar">
                  <i class="fas fa-arrow-left"></i> Back
              </a>';
+             echo '<a href="javascript:void(0);" onclick="goForward();" class="forward-button navbar">
+             <i class="fas fa-arrow-right"></i> Forward
+           </a>';       
    }
+
+   
    ?>
    <section class="flex">
    
@@ -103,13 +108,21 @@ if (isset($message)) {
         }
     }
       window.onscroll = function() {scrollFunction()};
-
+      function goForward() {
+            history.forward(); // Using the browser's forward function
+        }
 function scrollFunction() {
    var backButton = document.querySelector('.back-button');
    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       backButton.style.bottom = "10px"; // Adjust this value as needed
    } else {
       backButton.style.bottom = "20px"; // Adjust this value as needed
+   }
+   var forwardButton = document.querySelector('.forward-button');
+   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      forwardButton.style.bottom = "10px"; // Adjust this value as needed
+   } else {
+      forwardButton.style.bottom = "20px"; // Adjust this value as needed
    }
 }
 window.onload = function() {
