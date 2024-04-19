@@ -8,8 +8,7 @@ if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    $user_id = '';
-}
-;
+};
 
 ?>
 
@@ -30,14 +29,36 @@ if (isset($_SESSION['user_id'])) {
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+   <style>
+      .breadcrumb {
+         text-align: left;
+         font-size: 18px;
+
+      }
+
+      .breadcrumb a {
+         text-decoration: none;
+         color: #555;
+      }
+
+      .breadcrumb a:hover {
+         color: #007bff;
+      }
+   </style>
+
 </head>
 
 <body>
 
    <?php include 'components/user_header.php'; ?>
 
+
+
    <section class="about">
 
+      <div class="breadcrumb">
+         <a href="home.php">Home</a> / About
+      </div>
       <div class="row">
 
          <div class="image">
@@ -170,7 +191,6 @@ if (isset($_SESSION['user_id'])) {
    <script src="js/script.js"></script>
 
    <script>
-
       var swiper = new Swiper(".reviews-slider", {
          loop: true,
          spaceBetween: 20,
@@ -190,7 +210,6 @@ if (isset($_SESSION['user_id'])) {
             },
          },
       });
-
    </script>
 
 </body>
