@@ -20,9 +20,14 @@ if (isset($message)) {
              </a>';
    }
    ?>
+
+
+
    <section class="flex">
    
-      <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
+      
+   
+   <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
             src="images/logo_board.png" width="250px" />
 
       </a>
@@ -117,5 +122,10 @@ function scrollFunction() {
 window.onload = function() {
         scrollFunction();
     };
+ 
+
+
+
+
 </script>
 </header>

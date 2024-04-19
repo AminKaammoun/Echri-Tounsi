@@ -59,7 +59,7 @@
          <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
       </div>
       <div class="navbar">
-         <p><?= $fetch_profile['name']; ?></p>
+         <p style="font-size: 20px;"><?= $fetch_profile['name']; ?></p>
       </div>
       
    </section>

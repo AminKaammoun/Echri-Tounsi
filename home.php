@@ -98,28 +98,25 @@ include 'components/wishlist_cart.php';
 </div>
 
 <section class="category">
-
    <h1 class="heading">shop by category</h1>
 
    <div class="swiper category-slider">
+      <div class="swiper-wrapper">
+         <?php foreach ($categories as $category): ?>
+            <a href="category.php?category=<?= $category['name']; ?>" class="swiper-slide slide">
+               <img src="uploaded_img/<?= $category['image']; ?>" alt="">
+               <h3><?= $category['name']; ?></h3>
+            </a>
+         <?php endforeach; ?>
+      </div>
 
-   <div class="swiper-wrapper">
-
-   <?php foreach ($categories as $category): ?>
-        <a href="category.php?category=<?= $category['name']; ?>" class="swiper-slide slide">
-            <img src="uploaded_img/<?= $category['image']; ?>" alt="">
-            <h3><?= $category['name']; ?></h3>
-        </a>
-    <?php endforeach; ?>
-
-  
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
    </div>
-
-   <div class="swiper-pagination"></div>
-
-   </div>
-
 </section>
+
+
 
 <section class="home-products">
 
@@ -201,6 +198,10 @@ var categorySlider = new Swiper(".category-slider", {
       el: ".swiper-pagination",
       clickable:true,
    },
+   navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+   },
 
    breakpoints: {
       0: {
@@ -217,6 +218,7 @@ var categorySlider = new Swiper(".category-slider", {
       },
    },
 });
+
 
 var productsSlider = new Swiper(".products-slider", {
    loop:true,
