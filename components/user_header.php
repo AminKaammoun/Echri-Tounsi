@@ -25,9 +25,14 @@ if (isset($message)) {
 
    
    ?>
-   <section class="flex">
 
-      <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
+
+
+   <section class="flex">
+   
+      
+   
+   <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
             src="images/logo_board.png" width="250px" />
 
       </a>
@@ -93,9 +98,11 @@ if (isset($message)) {
 
       </div>
       <div>
-         <p>
-            <?= $fetch_profile["name"]; ?>
-         </p>
+         <?php if(isset($fetch_profile["name"])){ ?>
+      <p style="font-size: 20px;">
+              Welcome back, <?= $fetch_profile["name"]; ?>
+            </p>
+            <?php } ?>
       </div>
 
    </section>
@@ -128,5 +135,10 @@ function scrollFunction() {
 window.onload = function() {
         scrollFunction();
     };
+ 
+
+
+
+
 </script>
 </header>

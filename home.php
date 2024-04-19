@@ -100,29 +100,26 @@ include 'components/wishlist_cart.php';
 
    </div>
 
-   <section class="category">
+<section class="category">
+   <h1 class="heading">shop by category</h1>
 
-      <h1 class="heading">shop by category</h1>
-
-      <div class="swiper category-slider">
-
-         <div class="swiper-wrapper">
-
-            <?php foreach ($categories as $category): ?>
-               <a href="category.php?category=<?= $category['name']; ?>" class="swiper-slide slide">
-                  <img src="uploaded_img/<?= $category['image']; ?>" alt="">
-                  <h3><?= $category['name']; ?></h3>
-               </a>
-            <?php endforeach; ?>
-
-
-         </div>
-
-         <div class="swiper-pagination"></div>
-
+   <div class="swiper category-slider">
+      <div class="swiper-wrapper">
+         <?php foreach ($categories as $category): ?>
+            <a href="category.php?category=<?= $category['name']; ?>" class="swiper-slide slide">
+               <img src="uploaded_img/<?= $category['image']; ?>" alt="">
+               <h3><?= $category['name']; ?></h3>
+            </a>
+         <?php endforeach; ?>
       </div>
 
-   </section>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+   </div>
+</section>
+
+
 
    <section class="home-products">
 
@@ -198,29 +195,34 @@ include 'components/wishlist_cart.php';
          },
       });
 
-      var categorySlider = new Swiper(".category-slider", {
-         loop: true,
-         spaceBetween: 20,
-         pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-         },
+var categorySlider = new Swiper(".category-slider", {
+   loop:true,
+   spaceBetween: 20,
+   pagination: {
+      el: ".swiper-pagination",
+      clickable:true,
+   },
+   navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+   },
 
-         breakpoints: {
-            0: {
-               slidesPerView: 2,
-            },
-            650: {
-               slidesPerView: 3,
-            },
-            768: {
-               slidesPerView: 4,
-            },
-            1024: {
-               slidesPerView: 5,
-            },
-         },
-      });
+   breakpoints: {
+      0: {
+         slidesPerView: 2,
+       },
+      650: {
+        slidesPerView: 3,
+      },
+      768: {
+        slidesPerView: 4,
+      },
+      1024: {
+        slidesPerView: 5,
+      },
+   },
+});
+
 
       var productsSlider = new Swiper(".products-slider", {
          loop: true,
