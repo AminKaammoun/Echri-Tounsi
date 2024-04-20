@@ -119,6 +119,9 @@ if (isset($message)) {
       window.onscroll = function() {
          scrollFunction()
       };
+      function goForward() {
+            history.forward(); // Using the browser's forward function
+        }
 
       function scrollFunction() {
          var backButton = document.querySelector('.back-button');
