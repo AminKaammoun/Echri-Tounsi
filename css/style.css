@@ -81,7 +81,7 @@ body {
 
 section {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -1121,4 +1121,19 @@ section {
   .checkout-orders form .flex .inputBox {
     width: 100%;
   }
+  .breadcrumb {
+    text-align: left;
+    font-size: 18px;
+
+ }
+
+ .breadcrumb a {
+    text-decoration: none;
+    color: #555;
+ }
+
+ .breadcrumb a:hover {
+    color: #007bff;
+ }
+
 }

@@ -50,6 +50,23 @@ if (isset($_POST['update_qty'])) {
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+   <style>
+      .breadcrumb {
+         text-align: left;
+         font-size: 18px;
+
+      }
+
+      .breadcrumb a {
+         text-decoration: none;
+         color: #555;
+      }
+
+      .breadcrumb a:hover {
+         color: #007bff;
+      }
+   </style>
+
 </head>
 
 <body>
@@ -57,6 +74,11 @@ if (isset($_POST['update_qty'])) {
    <?php include 'components/user_header.php'; ?>
 
    <section class="products shopping-cart">
+
+      <div class="breadcrumb">
+         <a href="home.php">Home</a> / <a href="shop.php">Products</a> / Shopping cart
+      </div>
+
 
       <h3 class="heading">shopping cart</h3>
 
@@ -68,7 +90,7 @@ if (isset($_POST['update_qty'])) {
          $select_cart->execute([$user_id]);
          if ($select_cart->rowCount() > 0) {
             while ($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)) {
-               ?>
+         ?>
                <form action="" method="post" class="box">
                   <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
                   <a href="quick_view.php?pid=<?= $fetch_cart['pid']; ?>" class="fas fa-eye"></a>
@@ -76,17 +98,14 @@ if (isset($_POST['update_qty'])) {
                   <div class="name"><?= $fetch_cart['name']; ?></div>
                   <div class="flex">
                      <div class="price">$<?= $fetch_cart['price']; ?>/-</div>
-                     <input type="number" name="qty" class="qty" min="1" max="99"
-                        onkeypress="if(this.value.length == 2) return false;" value="<?= $fetch_cart['quantity']; ?>">
+                     <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="<?= $fetch_cart['quantity']; ?>">
                      <button type="submit" class="fas fa-edit" name="update_qty"></button>
                   </div>
-                  <div class="sub-total"> sub total :
-                     <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span>
-                  </div>
+                  <div class="sub-total"> sub total : <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>
                   <input type="submit" value="delete item" onclick="return confirm('Delete this from cart?');"
-                     class="delete-btn" name="delete">
+                  class="delete-btn" name="delete">
                </form>
-               <?php
+         <?php
                $grand_total += $sub_total;
             }
          } else {
@@ -98,8 +117,7 @@ if (isset($_POST['update_qty'])) {
       <div class="cart-total">
          <p>grand total : <span>$<?= $grand_total; ?>/-</span></p>
          <a href="shop.php" class="option-btn">continue shopping</a>
-         <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>"
-            onclick="return confirm('delete all from cart?');">delete all items</a>
+         <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('delete all from cart?');">delete all item</a>
          <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">proceed to checkout</a>
       </div>
 

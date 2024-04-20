@@ -8,8 +8,7 @@ if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    $user_id = '';
-}
-;
+};
 
 ?>
 
@@ -28,6 +27,22 @@ if (isset($_SESSION['user_id'])) {
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+   <style>
+      .breadcrumb {
+         text-align: left;
+         font-size: 18px;
+
+      }
+
+      .breadcrumb a {
+         text-decoration: none;
+         color: #555;
+      }
+
+      .breadcrumb a:hover {
+         color: #007bff;
+      }
+   </style>
 </head>
 
 <body>
@@ -36,13 +51,17 @@ if (isset($_SESSION['user_id'])) {
 
    <section class="orders">
 
+      <div class="breadcrumb">
+         <a href="home.php">Home</a> / Orders
+      </div>
+
       <h1 class="heading">Placed orders</h1>
 
       <div class="box-container">
 
          <?php
          if ($user_id == '') {
-            ?>
+         ?>
             <div style="text-align: center;   max-width: fit-content; margin-left: auto; margin-right: auto;">
                <img src="images/sad-svgrepo-com.svg" alt="" width="150" height="150">
                <?php
@@ -62,7 +81,7 @@ if (isset($_SESSION['user_id'])) {
             $select_orders->execute([$user_id]);
             if ($select_orders->rowCount() > 0) {
                while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
+            ?>
                   <div class="box">
                      <p>placed on : <span>
                            <?= $fetch_orders['placed_on']; ?>
@@ -89,15 +108,14 @@ if (isset($_SESSION['user_id'])) {
                            <?= $fetch_orders['total_price']; ?>/-
                         </span></p>
                      <p> payment status : <span style="color:<?php if ($fetch_orders['payment_status'] == 'pending') {
-                        echo 'red';
-                     } else {
-                        echo 'green';
-                     }
-                     ; ?>">
+                                                                  echo 'red';
+                                                               } else {
+                                                                  echo 'green';
+                                                               }; ?>">
                            <?= $fetch_orders['payment_status']; ?>
                         </span> </p>
                   </div>
-                  <?php
+         <?php
                }
             } else {
                echo '<p class="empty">no orders placed yet!</p>';

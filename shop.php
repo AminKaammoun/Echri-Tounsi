@@ -4,9 +4,9 @@ include 'components/connect.php';
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
+if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
-}else{
+} else {
    $user_id = '';
 };
 $category = isset($_GET['category']) ? $_GET['category'] : 'All';
@@ -16,20 +16,37 @@ include 'components/wishlist_cart.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>shop</title>
-   
+
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+   <style>
+      .breadcrumb {
+         text-align: left;
+         font-size: 18px;
 
+      }
+
+      .breadcrumb a {
+         text-decoration: none;
+         color: #555;
+      }
+
+      .breadcrumb a:hover {
+         color: #007bff;
+      }
+   </style>
 </head>
+
 <body>
 
 <div class="sidebar">
@@ -56,6 +73,9 @@ include 'components/wishlist_cart.php';
 <?php include 'components/user_header.php'; ?>
 
 <section class="products">
+<div class="breadcrumb">
+         <a href="home.php">Home</a> / Products
+      </div>
     <h1 class="heading">Products</h1>
     <h5 class="heading" style="color: grey;"><?php echo ucfirst($category); ?></h5>
    <div class="box-container">
@@ -95,9 +115,10 @@ include 'components/wishlist_cart.php';
    </div>
 </section>
 
-<?php include 'components/footer.php'; ?>
+   <?php include 'components/footer.php'; ?>
 
-<script src="js/script.js"></script>
+   <script src="js/script.js"></script>
 
 </body>
+
 </html>

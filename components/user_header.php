@@ -29,11 +29,8 @@ if (isset($message)) {
 
 
    <section class="flex">
-   
-      
-   
-   <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
-            src="images/logo_board.png" width="250px" />
+
+      <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img src="images/logo_board.png" width="250px" />
 
       </a>
 
@@ -56,15 +53,13 @@ if (isset($message)) {
          $total_cart_counts = $count_cart_items->rowCount();
          ?>
          <div id="menu-btn" class="fas fa-bars"></div>
-         <a href="search_page.php"><i class="fas fa-search"></i></a>
-         <a href="wishlist.php"><i class="fas fa-heart"></i><span>(
-               <?= $total_wishlist_counts; ?>)
-            </span></a>
-         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(
-               <?= $total_cart_counts; ?>)
-            </span></a>
+         <!--<a href="search_page.php"><i class="fas fa-search"></i></a>-->
+         <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?= $total_wishlist_counts; ?>)</span></a>
+         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(<?= $total_cart_counts; ?>)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
       </div>
+
+
 
       <div class="profile">
          <?php
@@ -72,7 +67,7 @@ if (isset($message)) {
          $select_profile->execute([$user_id]);
          if ($select_profile->rowCount() > 0) {
             $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
-            ?>
+         ?>
             <p>
                <?= $fetch_profile["name"]; ?>
             </p>
@@ -81,64 +76,66 @@ if (isset($message)) {
                <a href="user_register.php" class="option-btn">register</a>
                <a href="user_login.php" class="option-btn">login</a>
             </div>
-            <a href="components/user_logout.php" class="delete-btn"
-               onclick="return confirm('logout from the website?');">logout</a>
-            <?php
+            <a href="components/user_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a>
+         <?php
          } else {
-            ?>
+         ?>
             <p>please login or register first!</p>
             <div class="flex-btn">
                <a href="user_register.php" class="option-btn">register</a>
                <a href="user_login.php" class="option-btn">login</a>
             </div>
-            <?php
+         <?php
          }
          ?>
 
 
       </div>
       <div>
-         <?php if(isset($fetch_profile["name"])){ ?>
-      <p style="font-size: 20px;">
-              Welcome back, <?= $fetch_profile["name"]; ?>
-            </p>
-            <?php } ?>
+         <h2 style="margin-right: 10px;">
+            Welcome <?= $fetch_profile["name"]; ?>
+         </h2>
       </div>
 
+      <div class="search-box">
+         <form action="search_page.php" method="post">
+            <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="search-input" style="font-size: 16px; width: 150px; padding: 6px;" required>
+            <button type="submit" class="search-button" name="search_btn" style="font-size: 20px; padding: 6px; border: none; background: none;"><i class="fas fa-search"></i></button>
+         </form>
+      </div>
+
+
    </section>
+
+
    <script>
       function goBack() {
          if (window.location.pathname !== 'http://localhost/Echri-Tounsi/home.php') {
             history.back();
          } else {
             window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
-        }
-    }
-      window.onscroll = function() {scrollFunction()};
-      function goForward() {
-            history.forward(); // Using the browser's forward function
-        }
-function scrollFunction() {
-   var backButton = document.querySelector('.back-button');
-   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      backButton.style.bottom = "10px"; // Adjust this value as needed
-   } else {
-      backButton.style.bottom = "20px"; // Adjust this value as needed
-   }
-   var forwardButton = document.querySelector('.forward-button');
+         }
+      }
+      window.onscroll = function() {
+         scrollFunction()
+      };
+
+      function scrollFunction() {
+         var backButton = document.querySelector('.back-button');
+         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backButton.style.bottom = "10px"; // Adjust this value as needed
+         } else {
+            backButton.style.bottom = "20px"; // Adjust this value as needed
+         }
+         var forwardButton = document.querySelector('.forward-button');
    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       forwardButton.style.bottom = "10px"; // Adjust this value as needed
    } else {
       forwardButton.style.bottom = "20px"; // Adjust this value as needed
    }
-}
-window.onload = function() {
-        scrollFunction();
-    };
- 
-
-
-
-
-</script>
+      }
+      window.onload = function() {
+         scrollFunction();
+      };
+   </script>
 </header>
