@@ -81,7 +81,7 @@ body {
 
 section {
   padding: 2rem;
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -777,7 +777,10 @@ section {
   display: flex;
   gap: 1rem;
 }
-
+.search-box {
+  position: absolute;
+    right: 0;
+}
 .search-form form input {
   width: 100%;
   border: var(--border);

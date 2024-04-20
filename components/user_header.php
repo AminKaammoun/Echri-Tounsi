@@ -101,16 +101,16 @@ if (isset($message)) {
          <?php }?>
       </div>
 
-      <div class="search-box">
+   
+
+
+   </section>
+   <div class="search-box">
          <form action="search_page.php" method="post">
             <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="search-input" style="font-size: 16px; width: 150px; padding: 6px;" required>
             <button type="submit" class="search-button" name="search_btn" style="font-size: 20px; padding: 6px; border: none; background: none;"><i class="fas fa-search"></i></button>
          </form>
       </div>
-
-
-   </section>
-
 
    <script>
       function goBack() {
