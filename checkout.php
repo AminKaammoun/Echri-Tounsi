@@ -155,19 +155,19 @@ if (isset($_POST['order'])) {
             </div>
             <div class="inputBox">
                <span>city :</span>
-               <input type="text" name="city" placeholder="e.g. mumbai" class="box" maxlength="50" required>
+               <input type="text" name="city" placeholder="e.g. Sfax" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>state :</span>
-               <input type="text" name="state" placeholder="e.g. maharashtra" class="box" maxlength="50" required>
+               <input type="text" name="state" placeholder="e.g. Sfax" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>country :</span>
-               <input type="text" name="country" placeholder="e.g. India" class="box" maxlength="50" required>
+               <input type="text" name="country" placeholder="e.g. Tunisia" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>pin code :</span>
-               <input type="number" min="0" name="pin_code" placeholder="e.g. 123456" min="0" max="999999"
+               <input type="number" min="0" name="pin_code" placeholder="e.g. 3021" min="0" max="999999"
                   onkeypress="if(this.value.length == 6) return false;" class="box" required>
             </div>
          </div>
