@@ -8,8 +8,7 @@ if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    $user_id = '';
-}
-;
+};
 
 ?>
 
@@ -62,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
 
          <?php
          if ($user_id == '') {
-            ?>
+         ?>
             <div style="text-align: center;   max-width: fit-content; margin-left: auto; margin-right: auto;">
                <img src="images/sad-svgrepo-com.svg" alt="" width="150" height="150">
                <?php
@@ -84,17 +83,17 @@ if (isset($_SESSION['user_id'])) {
             $number = 1;
             if ($select_orders->rowCount() > 0) {
                while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
+            ?>
                   <div class="box">
                      <section class="order">
                         <h3>Order num: <?php echo $number ?></h3>
                         <div class="flex">
                            <div class="order-details">
 
-                              <table>
+                              <table border="1px">
                                  <tr>
                                     <td>
-                                       <p>Order date :</p>
+                                       <p>Order date:</p>
                                     </td>
                                     <td>
                                        <p>
@@ -155,13 +154,23 @@ if (isset($_SESSION['user_id'])) {
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td>
+                                    <td style="vertical-align: top;">
                                        <p>your orders:</p>
                                     </td>
                                     <td>
                                        <span class="order-info">
-                                          <?= $fetch_orders['total_products']; ?>
+                                          <?php
+                                          $parts = explode("-", $fetch_orders['total_products']);
+                                          foreach ($parts as $part) {
+                                             if ($part !== ' ') {
+                                                echo "- " . $part . "<br>";
+                                             }
+                                          }
+                                          ?>
+
                                        </span>
+                                       <br>
+
                                     </td>
                                  </tr>
                                  <tr>
@@ -170,21 +179,20 @@ if (isset($_SESSION['user_id'])) {
                                     </td>
                                     <td>
                                        <span class="order-info">
-                                          <?= $fetch_orders['total_price']; ?>
+                                          $<?= $fetch_orders['total_price']; ?>
                                        </span>
                                     </td>
                                  </tr>
                               </table>
                            </div>
-                           <h3
-                              style="background-color: <?= ($fetch_orders['payment_status'] == "pending") ? '#e74c3c' : '#69d981'; ?> ;">
+                           <h3 style="background-color: <?= ($fetch_orders['payment_status'] == "pending") ? '#e74c3c' : '#69d981'; ?> ;">
                               payment status: <?= $fetch_orders['payment_status']; ?></h3>
                            <?php $number++; ?>
                         </div>
                      </section>
 
                   </div>
-                  <?php
+         <?php
                }
             } else {
                echo '<p class="empty">no orders placed yet!</p>';
