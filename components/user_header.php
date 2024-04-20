@@ -92,9 +92,13 @@ if (isset($message)) {
 
       </div>
       <div>
+         <?php if(isset($fetch_profile["name"])) { ?>
          <h2 style="margin-right: 10px;">
+        
             Welcome <?= $fetch_profile["name"]; ?>
+            
          </h2>
+         <?php }?>
       </div>
 
       <div class="search-box">
