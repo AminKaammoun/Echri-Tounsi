@@ -1024,6 +1024,8 @@ section {
   td
   .order-info {
   color: var(--main-color);
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .footer {
