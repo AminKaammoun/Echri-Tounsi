@@ -9,12 +9,22 @@ if (isset($message)) {
          </div>
          ';
       } else {
+         if ($message == "incorrect username or password!") {
+         echo '
+         <div class="message-warn">
+            <span>' . $message . '</span>
+            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+         </div>
+         ';
+      } else {
          echo '
          <div class="message">
             <span>' . $message . '</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';
+      }
+
       }
 
    }
@@ -29,9 +39,12 @@ if (isset($message)) {
                  <i class="fas fa-arrow-left"></i> Back
              </a>';
       echo '<a href="javascript:void(0);" onclick="goForward();" class="forward-button navbar">
+      echo '<a href="javascript:void(0);" onclick="goForward();" class="forward-button navbar">
              <i class="fas fa-arrow-right"></i> Forward
            </a>';
+           </a>';
    }
+
 
 
    ?>
@@ -41,6 +54,7 @@ if (isset($message)) {
    <section class="flex">
 
       <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
+           
             src="images/logo_board.png" width="250px" />
 
       </a>
@@ -78,26 +92,29 @@ if (isset($message)) {
          $select_profile->execute([$user_id]);
          if ($select_profile->rowCount() > 0) {
             $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
-            ?>
+               ?>
             <p>
                <?= $fetch_profile["name"]; ?>
             </p>
             <a href="update_user.php" class="btn">update profile</a>
+            <?php if (!isset($fetch_profile["name"])) { ?>
             <div class="flex-btn">
                <a href="user_register.php" class="option-btn">register</a>
                <a href="user_login.php" class="option-btn">login</a>
             </div>
+            <?php } ?>
             <a href="components/user_logout.php" class="delete-btn"
+              
                onclick="return confirm('logout from the website?');">logout</a>
-            <?php
+               <?php
          } else {
-            ?>
+               ?>
             <p>please login or register first!</p>
             <div class="flex-btn">
                <a href="user_register.php" class="option-btn">register</a>
                <a href="user_login.php" class="option-btn">login</a>
             </div>
-            <?php
+               <?php
          }
          ?>
 
@@ -111,13 +128,29 @@ if (isset($message)) {
 
             </h2>
          <?php } ?>
+         <?php if (isset($fetch_profile["name"])) { ?>
+            <h2 style="margin-right: 10px;">
+
+               Welcome <?= $fetch_profile["name"]; ?>
+
+            </h2>
+         <?php } ?>
       </div>
+
 
 
 
 
    </section>
    <div class="search-box">
+      <form action="search_page.php" method="post">
+         <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="search-input"
+            style="font-size: 16px; width: 150px; padding: 6px;" required>
+         <button type="submit" class="search-button" name="search_btn"
+            style="font-size: 20px; padding: 6px; border: none; background: none;"><i
+               class="fas fa-search"></i></button>
+      </form>
+   </div>
       <form action="search_page.php" method="post">
          <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="search-input"
             style="font-size: 16px; width: 150px; padding: 6px;" required>
@@ -135,10 +168,12 @@ if (isset($message)) {
             window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
          }
       }
-      window.onscroll = function () {
+      window.onscroll = function  () {
          scrollFunction()
       };
       function goForward() {
+         history.forward(); // Using the browser's forward function
+      }
          history.forward(); // Using the browser's forward function
       }
 
@@ -150,13 +185,13 @@ if (isset($message)) {
             backButton.style.bottom = "20px"; // Adjust this value as needed
          }
          var forwardButton = document.querySelector('.forward-button');
-         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            forwardButton.style.bottom = "10px"; // Adjust this value as needed
-         } else {
-            forwardButton.style.bottom = "20px"; // Adjust this value as needed
-         }
+               if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                  forwardButton.style.bottom = "10px"; // Adjust this value as needed
+               } else {
+                  forwardButton.style.bottom = "20px"; // Adjust this value as needed
+               }
       }
-      window.onload = function () {
+      window.onload = function  () {
          scrollFunction();
       };
    </script>
