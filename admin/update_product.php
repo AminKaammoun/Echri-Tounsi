@@ -160,21 +160,25 @@ if(isset($_POST['update'])){
       <input type="number" name="quantity" required class="box" min="0" max="9999999999" placeholder="enter product price" value="<?= $fetch_products['quantity']; ?>">
       
       
-               <span>category</span>
+      <div class="inputBox">
+               <span>category (required)</span>
                <select name="category" id="category" class="box" required>
-                  <?php foreach ($categories as $category): ?>
-                     <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
-                  <?php endforeach; ?>
-               </select> 
-          
-
-          
-               <span>sub category</span>
-               <select name="sub_category" id="category" class="box" required>
-                  <?php foreach ($sub_categories as $category): ?>
+                  <option value="" selected disabled>Select Category</option>
+                  <?php foreach ($categories as $category) : ?>
                      <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
                   <?php endforeach; ?>
                </select>
+            </div>
+
+            <div class="inputBox">
+               <span>sub category (required)</span>
+               <select name="sub_category" id="subCategorySelect" class="box" required>
+                  <option value="" selected disabled>Select Subcategory</option>
+                  <?php foreach ($sub_categories as $category) : ?>
+                     <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
+                  <?php endforeach; ?>
+               </select>
+            </div>
  
       
       
@@ -207,7 +211,55 @@ if(isset($_POST['update'])){
 
 
 
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+         var categorySelect = document.getElementById('category');
+         var subCategorySelect = document.getElementById('subCategorySelect');
 
+         categorySelect.addEventListener('change', function() {
+            var categoryId = this.value;
+            if (categoryId) {
+               var xhr = new XMLHttpRequest();
+               xhr.open('GET', 'get_subcategories.php?category_id=' + categoryId, true);
+               xhr.onreadystatechange = function() {
+                  if (xhr.readyState == 4 && xhr.status == 200) {
+                     var subCategories = JSON.parse(xhr.responseText);
+                     updateSubCategoryOptions(subCategories);
+                  }
+               };
+               xhr.send();
+            } else {
+               subCategorySelect.innerHTML = '';
+            }
+         });
+
+         function updateSubCategoryOptions(subCategories) {
+            subCategorySelect.innerHTML = '';
+            subCategories.forEach(function(subCategory) {
+               var option = document.createElement('option');
+               option.value = subCategory.id;
+               option.textContent = subCategory.name;
+               subCategorySelect.appendChild(option);
+            });
+         }
+
+         // Initial call to populate subcategories based on the default category
+         var defaultCategoryId = categorySelect.value;
+         if (defaultCategoryId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_subcategories.php?category_id=' + defaultCategoryId, true);
+            xhr.onreadystatechange = function() {
+               if (xhr.readyState == 4 && xhr.status == 200) {
+                  var subCategories = JSON.parse(xhr.responseText);
+                  updateSubCategoryOptions(subCategories);
+               }
+            };
+            xhr.send();
+         }
+      });
+
+      
+   </script>
 
 
 
