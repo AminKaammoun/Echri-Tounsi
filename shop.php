@@ -60,13 +60,13 @@ include 'components/wishlist_cart.php';
                 <a href="shop.php?category=Female"> <i class="fas fa-angle-right"></i> Female Clothes</a>
                 <a href="shop.php?category=Kids"> <i class="fas fa-angle-right"></i> Kids Clothes</a>
                 <a href="shop.php?category=Dates"> <i class="fas fa-angle-right"></i> Dates</a>
-                <a href="shop.php?category=Oil"> <i class="fas fa-angle-right"></i> Oil</a>
+                <a href="shop.php?category=Canned/Packed"> <i class="fas fa-angle-right"></i> Canned/Packed</a>
                 <a href="shop.php?category=Traditional sweet"> <i class="fas fa-angle-right"></i> Traditional Sweets</a>
                 <a href="shop.php?category=Key ring"> <i class="fas fa-angle-right"></i> Key Ring</a>
                 <a href="shop.php?category=Magnetic sticker"> <i class="fas fa-angle-right"></i> Magnetic Sticker</a>
                 <a href="shop.php?category=Craftmanship"> <i class="fas fa-angle-right"></i> Craftmanship</a>
             </div>
-        </section>
+        </section> 
     </footer>
 </div>
 
