@@ -59,6 +59,7 @@ include 'components/wishlist_cart.php';
       <div class="breadcrumb">
          <a href="home.php">Home</a> / <a href="shop.php">Products</a> / Searched Products
       </div>
+      <br />
 
       <div class="box-container">
 

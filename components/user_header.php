@@ -1,3 +1,36 @@
+<style>
+    .search-box {
+        margin-top: 10px;
+        margin-right: 30px;
+        display: inline-block;
+    }
+
+    .search-input {
+        font-size: 16px;
+        width: 220px;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        outline: none;
+        background-color: #F7FEFF;
+    }
+
+    .search-button {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 20px;
+        padding: 6px;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .search-button i {
+        color: #555;
+    }
+</style>
 <?php
 if (isset($message)) {
     foreach ($message as $msg) {
@@ -35,8 +68,7 @@ if (isset($message)) {
 
     <section class="flex">
 
-        <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img
-                src="images/logo_board.png" width="250px" />
+        <a href="home.php" class="logo " style="display: flex;justify-content: center;align-items: center;gap:2rem"><img src="images/logo_board.png" width="250px" />
         </a>
 
         <nav class="navbar">
@@ -105,10 +137,11 @@ if (isset($message)) {
     </section>
     <div class="search-box">
         <form action="search_page.php" method="post">
-            <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="search-input" style="font-size: 16px; width: 150px; padding: 6px;" required>
-            <button type="submit" class="search-button" name="search_btn" style="font-size: 20px; padding: 6px; border: none; background: none;"><i class="fas fa-search"></i></button>
+            <input type="text" name="search_box" placeholder="    Search for products" maxlength="100" class="search-input">
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
     </div>
+
 
     <script>
         function goBack() {
@@ -118,7 +151,7 @@ if (isset($message)) {
                 window.location.href = 'other_page.php'; // Change 'other_page.php' to the desired fallback page
             }
         }
-        
+
         function goForward() {
             history.forward(); // Using the browser's forward function
         }
