@@ -7,7 +7,7 @@
 
     .search-input {
         font-size: 16px;
-        width: 220px;
+        width: 300px;
         padding: 6px;
         border: 1px solid #ccc;
         border-radius: 7px;

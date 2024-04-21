@@ -17,7 +17,8 @@
   bottom: 150px; /* Adjust this value as needed */
   left: 50px; /* Adjust this value as needed */
   z-index: 9999;
-  background-color: #e2d6d6;
+  background-color: #F7FEFF;
+  font-size: 15px;
   border: 1px solid #ccc;
   padding: 10px 20px;
   border-radius: 5px;
@@ -29,7 +30,9 @@
   bottom: 150px; /* Adjust this value as needed */
   right: 50px; /* Adjust this value as needed */
   z-index: 9999;
-  background-color: #e2d6d6;
+  font-size: 15px;
+
+  background-color: #F7FEFF;
   border: 1px solid #ccc;
   padding: 10px 20px;
   border-radius: 5px;
