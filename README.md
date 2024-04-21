@@ -16,16 +16,23 @@ Echri-Tounsi is an ecommerce platform dedicated to showcasing and distributing T
 ## Installation (First Time Only)
 
 1. Download PHP : 
-`https://www.php.net/downloads.php`
+[https://www.php.net/downloads.php](https://www.php.net/downloads.php)
 
 2. Add PHP path to the envrionment and variables
 
 3. Try `php --version` to see if php is setup correctly
+```bash
+php --version
+```
 
-4. Download XAMPP : 
-`https://www.apachefriends.org/download.html`
+4. Download XAMPP: [https://www.apachefriends.org/download.html](https://www.apachefriends.org/download.html)
 
 5. Clone the repository: `https://github.com/AminKaammoun/Echri-Tounsi.git` into `C:/xampp/htdocs` directory
+```bash
+cd C:/xampp/htdocs
+
+git clone https://github.com/AminKaammoun/Echri-Tounsi.git
+```
 
 6. Run XAMPP Apache and MySQL servers
 
@@ -33,12 +40,12 @@ Echri-Tounsi is an ecommerce platform dedicated to showcasing and distributing T
 
 8. Import **shop_db.sql** available in Echri-Tounsi root directory
 
-9. Try out the application in : `https://localhost/echri-tounsi`
+9. Try out the application : [https://localhost/echri-tounsi](https://localhost/echri-tounsi)
 
 ## Usage (Every Time)
 
 1. Run XAMPP Apache and MySQL servers
-2. Try out the application in : `https://localhost/echri-tounsi`
+2. Try out the application in : [https://localhost/echri-tounsi](https://localhost/echri-tounsi)
 
 ## Team
 
